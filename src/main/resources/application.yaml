@@ -1,0 +1,11 @@
+spring:
+  kafka:
+    producer:
+      bootstrap-servers: localhost:9092
+      acks: all
+    listener:
+      ack-mode: MANUAL_IMMEDIATE
+      type: SINGLE
+    consumer:
+      bootstrap-servers: localhost:9092
+      group-id: dev-group

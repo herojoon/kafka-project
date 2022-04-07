@@ -1,4 +1,4 @@
-package com.herojoon.kafkaproject.producer;
+package com.herojoon.kafkaproject.sendmessage.producer;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.kafka.core.KafkaTemplate;
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * Kafka Producer 테스트를 위한 Controller
  */
-@RequestMapping("kafka")
+@RequestMapping("kafka/message")
 @RestController
 @RequiredArgsConstructor
 public class MessageProducer {

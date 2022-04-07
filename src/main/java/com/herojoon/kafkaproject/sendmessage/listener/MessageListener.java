@@ -1,8 +1,9 @@
-package com.herojoon.kafkaproject.listener;
+package com.herojoon.kafkaproject.sendmessage.listener;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.kafka.support.Acknowledgment;
 import org.springframework.stereotype.Component;
 
 @Slf4j
@@ -23,8 +24,11 @@ public class MessageListener {
      * @param record
      */
     @KafkaListener(topics = "dev-topic")
-    public void messageListener(ConsumerRecord<String, String> record) {
+    public void messageListener(ConsumerRecord<String, String> record, Acknowledgment acknowledgment) {
         log.info("### record: " + record.toString());
         log.info("### topic: " + record.topic() + ", value: " + record.value() + ", offset: " + record.offset());
+
+        // kafka 메시지 읽어온 곳까지 commit. (이 부분을 하지 않으면 메시지를 소비했다고 commit 된 것이 아니므로 계속 메시지를 읽어온다)
+        acknowledgment.acknowledge();
     }
 }
